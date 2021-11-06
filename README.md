@@ -44,3 +44,6 @@ This code was created with the following versions of tools:
 * Ensure you have at least the versions of the tools specified above
 * Delete node_modules folder and run "npm install" to refresh dependencies
 * If you get compiler errors, change the "pragma" line in all .sol files to match your version
+
+# Personal notes
+[google-docs notes](https://docs.google.com/document/d/1pjrYbQUyf9fc-V7j8B_dWuGZ8mDg0ocREXvKYaps0Ww/edit?usp=sharing)
