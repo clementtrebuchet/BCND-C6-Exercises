@@ -15,7 +15,8 @@ contract('ExerciseC6D', async (accounts) => {
     events.watch((error, result) => {
       if (result.event === 'OracleRequest') {
         console.log(`\n\nOracle Requested: index: ${result.args.index.toNumber()}, flight:  ${result.args.flight}, timestamp: ${result.args.timestamp.toNumber()}`);
-      } else {
+      }
+      else if (result.event === 'FlightStatusInfo') {
         console.log(`\n\nFlight Status Available: flight: ${result.args.flight}, timestamp: ${result.args.timestamp.toNumber()}, status: ${result.args.status.toNumber() == ON_TIME ? 'ON TIME' : 'DELAYED'}, verified: ${result.args.verified ? 'VERIFIED' : 'UNVERIFIED'}`);
       }
     });
@@ -43,7 +44,7 @@ contract('ExerciseC6D', async (accounts) => {
     
     // ARRANGE
     let flight = 'ND1309'; // Course number
-    let timestamp = Math.floor(Date.now() / 1000);
+    let timestamp = Math.floor(Date.now() / 1000); // in solidity the ts is used in seconds
 
     // Submit a request for oracles to get status information for a flight
     await config.exerciseC6D.fetchFlightStatus(flight, timestamp);
@@ -70,8 +71,8 @@ contract('ExerciseC6D', async (accounts) => {
           // Check to see if flight status is available
           // Only useful while debugging since flight status is not hydrated until a 
           // required threshold of oracles submit a response
-          //let flightStatus = await config.exerciseC6D.viewFlightStatus(flight, timestamp);
-          //console.log('\nPost', idx, oracleIndexes[idx].toNumber(), flight, timestamp, flightStatus);
+          let flightStatus = await config.exerciseC6D.viewFlightStatus(flight, timestamp);
+          console.log('\nPost', idx, oracleIndexes[idx].toNumber(), flight, timestamp, flightStatus);
         }
         catch(e) {
           // Enable this when debugging
