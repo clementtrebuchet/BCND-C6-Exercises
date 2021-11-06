@@ -18,8 +18,8 @@ var Config = async function(accounts) {
     ];
 
 
-    let owner = accounts[0];
-    let exerciseC6A = await ExerciseC6A.new();
+    var owner = accounts[0];
+    var  exerciseC6A = await ExerciseC6A.new();
     
     return {
         owner: owner,

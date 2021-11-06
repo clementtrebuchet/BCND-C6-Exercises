@@ -1,4 +1,4 @@
-var HDWalletProvider = require("truffle-hdwallet-provider");
+var HDWalletProvider = require('@truffle/hdwallet-provider');
 
 // Be sure to match this mnemonic with that in Ganache!
 var mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
@@ -12,5 +12,19 @@ module.exports = {
       network_id: '*',
       gas: 9999999
     }
-  }
+  },
+  compilers: {
+        solc: {
+            version: "0.8.7",    // Fetch exact version from solc-bin (default: truffle's version)
+            // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+            settings: {          // See the solidity docs for advice about optimization and evmVersion
+                optimizer: {
+                    enabled: true,
+                    runs: 8000
+                },
+            },
+            evmVersion: "london"
+            // }
+        }
+    }
 };
